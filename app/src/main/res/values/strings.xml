@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">restcountries</string>
     <string name="countries_flags">Countries Flags</string>
+    <string name="population">Population</string>
+    <string name="flag">Flag</string>
+    <string name="country_name">Name</string>
 </resources>

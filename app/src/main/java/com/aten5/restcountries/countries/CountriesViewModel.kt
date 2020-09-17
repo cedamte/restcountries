@@ -1,5 +1,7 @@
 package com.aten5.restcountries.countries
 
+import android.view.View
+import android.widget.Button
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,6 +19,18 @@ class CountriesViewModel(
     init {
         getCountriesData()
     }
+
+    enum class SortType {
+        NameASC,
+        NameDESC,
+        PopulationASC,
+        PopulationDESC,
+    }
+
+    private var sortType: SortType = SortType.NameDESC
+
+    private var sortByPopulation: Boolean = true
+    private var sortByName: Boolean = true
 
     private val _errorObservable: MutableLiveData<String> = MutableLiveData()
     val errorObservable: LiveData<String>
@@ -44,8 +58,36 @@ class CountriesViewModel(
     private fun processData(screenState: ScreenState) {
         when (screenState) {
             is CountriesScreenState.Content -> {
-                _countriesObservables.value = screenState.payload
-                removeLoading()
+                when (sortType) {
+                    SortType.NameASC -> {
+                        _countriesObservables.value =
+                            screenState.payload.sortedByDescending {
+                                it.countryName
+                            }
+                        removeLoading()
+                    }
+                    SortType.NameDESC -> {
+                        _countriesObservables.value =
+                            screenState.payload.sortedBy {
+                                it.countryName
+                            }
+                        removeLoading()
+                    }
+                    SortType.PopulationASC -> {
+                        _countriesObservables.value =
+                            screenState.payload.sortedByDescending {
+                                it.population
+                            }
+                        removeLoading()
+                    }
+                    SortType.PopulationDESC -> {
+                        _countriesObservables.value =
+                            screenState.payload.sortedBy {
+                                it.population
+                            }
+                        removeLoading()
+                    }
+                }
             }
             is ScreenState.Error -> {
                 _errorObservable.value = screenState.errorMessage
@@ -67,5 +109,37 @@ class CountriesViewModel(
 
     private fun showLoading() {
         _loadingObservable.value = true
+    }
+
+    fun sortList(view: View) {
+        when ((view as Button).text) {
+            "Name" -> {
+                when {
+                    sortByName -> {
+                        sortType = SortType.NameASC
+                        sortByName = false
+                    }
+                    !sortByName -> {
+                        sortType = SortType.NameDESC
+                        sortByName = true
+                    }
+                }
+
+                getCountriesData()
+            }
+            "Population" -> {
+                when {
+                    sortByPopulation -> {
+                        sortType = SortType.PopulationASC
+                        sortByPopulation = false
+                    }
+                    !sortByPopulation -> {
+                        sortType = SortType.PopulationDESC
+                        sortByPopulation = true
+                    }
+                }
+                getCountriesData()
+            }
+        }
     }
 }
