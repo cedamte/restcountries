@@ -12,6 +12,10 @@ dependencies {
     // Dagger
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // Testing
+    testImplementation 'junit:junit:4.13'
+    testImplementation "io.mockk:mockk:1.9.3"
 }
 
 sourceCompatibility = "1.7"
