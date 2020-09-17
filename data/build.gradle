@@ -18,12 +18,15 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "ALL_ENDPOINT", '"v2/all"')
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    
+
     buildFeatures {
         dataBinding true
     }
