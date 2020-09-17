@@ -16,7 +16,7 @@
 
 
 ## App flow:
-When the application is run, the launch activity is MainActivtiy, it shows a list of countries [url](https://restcountries.eu/).
+When the application is run, the launch activity is MainActivtiy, it shows a list of countries [RestCountries](https://restcountries.eu/).
 
 The List is initially sort by Country Name A -> Z.
 
