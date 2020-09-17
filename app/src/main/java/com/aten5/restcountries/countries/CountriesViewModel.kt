@@ -16,10 +16,6 @@ class CountriesViewModel(
     private val getCountriesUseCase: GetCountriesUseCase
 ) : ViewModel() {
 
-    init {
-        getCountriesData()
-    }
-
     enum class SortType {
         NameASC,
         NameDESC,
@@ -48,10 +44,8 @@ class CountriesViewModel(
         get() = _countriesObservables
 
 
-    private fun getCountriesData() {
+    fun getCountriesData() {
         getCountriesUseCase.getCountries()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
             .subscribe { processData(it) }
     }
 

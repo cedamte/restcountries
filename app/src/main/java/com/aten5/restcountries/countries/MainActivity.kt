@@ -63,5 +63,8 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, error, Toast.LENGTH_LONG)
                     .show()
             })
+
+        viewModel.getCountriesData()
+
     }
 }
