@@ -85,6 +85,8 @@ dependencies {
     implementation 'com.caverock:androidsvg:1.2.1'
 
 
+    // Mockito-kotlin
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
     implementation project(path: ":domain")
     implementation project(path: ":data")
 
