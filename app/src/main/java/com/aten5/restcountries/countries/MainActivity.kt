@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aten5.restcountries.R
 import com.aten5.restcountries.app.CountriesApplication
 import com.aten5.restcountries.databinding.ActivityMainBinding
-import timber.log.Timber
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -44,6 +43,7 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
         binding.loading.visibility = View.VISIBLE
+        binding.viewModel = viewModel
 
         viewModel.countriesObservables.observe(
             this, {
@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.errorObservable.observe(this,
             { error ->
-                Timber.d("🌟 $error")
                 Toast.makeText(this, error, Toast.LENGTH_LONG)
                     .show()
             })
