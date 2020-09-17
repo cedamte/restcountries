@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">restcountries</string>
+    <string name="countries_flags">Countries Flags</string>
 </resources>
