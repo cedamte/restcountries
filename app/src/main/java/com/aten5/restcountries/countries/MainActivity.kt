@@ -2,8 +2,10 @@ package com.aten5.restcountries.countries
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aten5.domain.entities.CountriesEntity
@@ -13,8 +15,13 @@ import com.aten5.restcountries.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private val viewAdapter = CountriesAdapter()
+    lateinit var viewModelFactory: CountriesViewModelFactory
+    private val viewModel: CountriesViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)
+            .get(CountriesViewModel::class.java)
+    }
 
+    private val viewAdapter = CountriesAdapter()
     private val dummyData = listOf(
         CountriesEntity(
             "England",
@@ -61,6 +68,25 @@ class MainActivity : AppCompatActivity() {
         }
         binding.loading.visibility = View.VISIBLE
 
-        viewAdapter.submitList(dummyData)
+//        viewAdapter.submitList(dummyData)
+
+        viewModel.countriesObservables.observe(
+            this, {
+                viewAdapter.submitList(it)
+            }
+        )
+        viewModel.loadingObservable.observe(this,
+            { isLoading ->
+                when (isLoading) {
+                    true -> binding.loading.visibility = View.VISIBLE
+                    false -> binding.loading.visibility = View.GONE
+                }
+            })
+
+        viewModel.errorObservable.observe(this,
+            { error ->
+                Toast.makeText(this, error, Toast.LENGTH_LONG)
+                    .show()
+            })
     }
 }
