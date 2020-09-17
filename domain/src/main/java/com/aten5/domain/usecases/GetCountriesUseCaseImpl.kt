@@ -4,8 +4,9 @@ import com.aten5.domain.entities.CountriesScreenState
 import com.aten5.domain.entities.ScreenState
 import com.aten5.domain.repositories.CountriesRepository
 import io.reactivex.rxjava3.core.Observable
+import javax.inject.Inject
 
-class GetCountriesUseCaseImpl(private val countriesRepository: CountriesRepository) :
+class GetCountriesUseCaseImpl @Inject constructor(private val countriesRepository: CountriesRepository) :
     GetCountriesUseCase {
     override fun getCountries(): Observable<ScreenState> {
         return countriesRepository.getAllCountries()

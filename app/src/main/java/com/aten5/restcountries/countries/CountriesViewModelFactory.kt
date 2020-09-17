@@ -3,8 +3,9 @@ package com.aten5.restcountries.countries
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.aten5.domain.usecases.GetCountriesUseCase
+import javax.inject.Inject
 
-class CountriesViewModelFactory(private val getCountriesUseCase: GetCountriesUseCase) :
+class CountriesViewModelFactory @Inject constructor(private val getCountriesUseCase: GetCountriesUseCase) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CountriesViewModel::class.java)) {

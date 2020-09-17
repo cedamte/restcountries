@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aten5.restcountries.R
 import com.aten5.restcountries.app.CountriesApplication
 import com.aten5.restcountries.databinding.ActivityMainBinding
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
+    @Inject
     lateinit var viewModelFactory: CountriesViewModelFactory
     private val viewModel: CountriesViewModel by lazy {
         ViewModelProvider(this, viewModelFactory)

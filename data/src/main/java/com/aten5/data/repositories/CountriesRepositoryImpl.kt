@@ -7,8 +7,10 @@ import com.aten5.domain.repositories.CountriesRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class CountriesRepositoryImpl(private val service: ApiService) : CountriesRepository {
+class CountriesRepositoryImpl @Inject constructor(private val service: ApiService) :
+    CountriesRepository {
     override fun getAllCountries(): Observable<List<CountriesEntity>> {
         return service.getAllCountries()
             .subscribeOn(Schedulers.io())
