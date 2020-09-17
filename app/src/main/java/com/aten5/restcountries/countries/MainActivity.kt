@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.aten5.domain.entities.CountriesEntity
 import com.aten5.restcountries.R
 import com.aten5.restcountries.databinding.ActivityMainBinding
 
@@ -13,6 +14,36 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val viewAdapter = CountriesAdapter()
+
+    private val dummyData = listOf(
+        CountriesEntity(
+            "England",
+            20,
+            "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+        ),
+        CountriesEntity(
+            "England",
+            20,
+            "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+        ),
+        CountriesEntity(
+            "England",
+            20,
+            "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+        ),
+        CountriesEntity(
+            "England",
+            20,
+            "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+        ),
+        CountriesEntity(
+            "England",
+            20,
+            "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+        ),
+
+        )
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,5 +60,7 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
         binding.loading.visibility = View.VISIBLE
+
+        viewAdapter.submitList(dummyData)
     }
 }
