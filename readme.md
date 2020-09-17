@@ -30,7 +30,7 @@ The core of the application took about 4hrs complete. Junit test where added aft
 
 
 ## With more time:
-- Would add more test more
+- Would add more test
 - Added more data sources e.g. Room Database, in keeping with the reactive manifesto
 - Improved the UI e.g. Buttons
-- Search functionality 
+- Added Search functionality 
