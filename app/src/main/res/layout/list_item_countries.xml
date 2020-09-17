@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -14,12 +15,14 @@
         android:orientation="horizontal"
         android:weightSum="1">
 
-        <ImageButton
+        <ImageView
+            imageUrl="@{countries.flagUrl}"
+            android:scaleType="centerCrop"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_weight="0.2"
             android:contentDescription="@string/countries_flags"
-            android:src="@drawable/ic_launcher_background" />
+            tools:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
             android:layout_width="0dp"
@@ -27,7 +30,8 @@
             android:layout_weight="0.5"
             android:padding="16dp"
             android:text="@{countries.countryName}"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:textAppearance="?attr/textAppearanceListItem"
+            tools:text="England" />
 
         <TextView
             android:layout_width="0dp"
@@ -35,6 +39,7 @@
             android:layout_weight="0.3"
             android:padding="16dp"
             android:text="@{String.valueOf(countries.population)}"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:textAppearance="?attr/textAppearanceListItem"
+            tools:text="20" />
     </LinearLayout>
 </layout>
