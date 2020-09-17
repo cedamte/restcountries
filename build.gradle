@@ -7,6 +7,7 @@ buildscript {
     ext.timber_version = '4.7.1'
     ext.rxjava_version = '3.0.6'
     ext.retrofit_version = '2.9.0'
+    ext.glide_version = '4.11.0'
     repositories {
         google()
         jcenter()
